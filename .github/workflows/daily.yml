@@ -1,0 +1,65 @@
+name: Daily screen
+
+on:
+  schedule:
+    # 23:30 UTC Mon-Fri = 07:30 Hong Kong time Tue-Sat, after each US session closes
+    - cron: "30 23 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: "Also scan the previous N sessions to seed the signal history (0 = off, e.g. 30 on the first run)"
+        default: "0"
+
+permissions:
+  contents: write     # save state/history.json back to the repo
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-screen
+  cancel-in-progress: false
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Run screener
+        env:
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          ALERT_TO: ${{ secrets.ALERT_TO }}
+        run: |
+          python -m screener.run --universe us --out build --history state/history.json \
+            --email --backfill "${{ github.event.inputs.backfill || 0 }}"
+
+      - name: Save signal history
+        run: |
+          git config user.name "screener-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/history.json
+          if ! git diff --cached --quiet; then
+            git commit -m "History update $(date -u +%F)"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+      - id: deploy
+        uses: actions/deploy-pages@v4
