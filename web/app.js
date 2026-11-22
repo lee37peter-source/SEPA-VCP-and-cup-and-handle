@@ -14,7 +14,10 @@ const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov
 const prettyDate = s => { const [y, m, d] = s.split("-").map(Number); return `${MONTHS[m - 1]} ${d}, ${y}`; };
 
 const S = { latest: null, history: [], pattern: "all", status: "all", q: "", sort: "score",
-            open: new Set(), charts: new Map(), hist: "all" };
+            open: new Set(), charts: new Map(), hist: "all", frame: "D" };
+try { if (localStorage.getItem("frame") === "W") S.frame = "W"; } catch (e) {}
+const MA_LABELS = {D: ["50", "150", "200"], W: ["10w", "30w", "40w"]};
+const maLegend = f => MA_LABELS[f].map((t, i) => `<span style="color:var(${["--ma50", "--ma150", "--ma200"][i]})">${t}</span>`).join("");
 
 /* ------------------------------------------------------------------ boot */
 async function load() {
@@ -186,10 +189,11 @@ function detailHTML(c) {
   return `<div class="detail">
     <div class="detail-top">
       <div class="patsel"></div>
-      <div class="ranges"><button data-r="63">3M</button><button data-r="126">6M</button><button data-r="252" >1Y</button><button data-r="all">All</button></div>
+      <div class="ctl"><div class="frames"><button data-f="D" class="${S.frame === "D" ? "on" : ""}">Daily</button><button data-f="W" class="${S.frame === "W" ? "on" : ""}">Weekly</button></div>
+      <div class="ranges"><button data-r="63">3M</button><button data-r="126">6M</button><button data-r="252" >1Y</button><button data-r="all">All</button></div></div>
     </div>
     <div class="chart-box"><canvas></canvas><div class="legend"></div>
-      <div class="legend-ma"><span style="color:var(--ma50)">50</span><span style="color:var(--ma150)">150</span><span style="color:var(--ma200)">200</span></div></div>
+      <div class="legend-ma">${maLegend(S.frame)}</div></div>
     <p class="desc">${esc(c.details)}</p>
     <div class="facts">
       <div class="fact"><div class="k">Buy point</div><div class="v">${fmt(c.entry)}</div></div>
@@ -212,7 +216,7 @@ async function mountChart(el) {
     data = await fetch(`data/charts/${encodeURIComponent(ticker)}.json`).then(r => r.json());
   } catch (e) { $(".legend", el).textContent = "Chart data unavailable"; return; }
   if (!document.body.contains(canvas)) return;
-  const ch = new Chart(canvas, $(".legend", el), data);
+  const ch = new Chart(canvas, $(".legend", el), data, S.frame);
   S.charts.set(k, ch);
   const pats = data.patterns || [];
   let idx = Math.max(0, pats.findIndex(p => p.pattern === pattern));
@@ -221,22 +225,56 @@ async function mountChart(el) {
   $$("button", sel).forEach(b => b.onclick = () => {
     idx = +b.dataset.i; $$("button", sel).forEach(x => x.classList.toggle("on", x === b)); ch.setPattern(pats[idx]);
   });
-  const rbtns = $$(".ranges button", el);
+  const rbtns = $$(".ranges button", el), fbtns = $$(".frames button", el);
   rbtns.forEach(b => b.onclick = () => { rbtns.forEach(x => x.classList.toggle("on", x === b)); ch.setRange(b.dataset.r); });
+  const showFrame = f => {
+    fbtns.forEach(x => x.classList.toggle("on", x.dataset.f === f));
+    $(".legend-ma", el).innerHTML = maLegend(f);
+  };
+  if (!data.weekly) { const w = fbtns.find(b => b.dataset.f === "W"); w.disabled = true; w.title = "Weekly data arrives with the next daily run"; showFrame("D"); }
+  else showFrame(ch.frame);
+  fbtns.forEach(b => b.onclick = () => {
+    if (b.disabled || ch.frame === b.dataset.f) return;
+    S.frame = b.dataset.f; try { localStorage.setItem("frame", S.frame); } catch (e) {}
+    showFrame(S.frame); rbtns.forEach(x => x.classList.remove("on"));
+    ch.setFrame(S.frame); ch.fitPattern();
+  });
   ch.setPattern(pats[idx]);
   ch.fitPattern();
 }
 
 /* ------------------------------------------------------------------ chart */
 class Chart {
-  constructor(canvas, legend, d) {
+  constructor(canvas, legend, d, frame = "D") {
     this.cv = canvas; this.ctx = canvas.getContext("2d"); this.legend = legend; this.d = d;
-    this.n = d.t.length; this.idx = new Map(d.t.map((t, i) => [t, i]));
-    this.vol50 = d.v.map((_, i) => i < 49 ? null : d.v.slice(i - 49, i + 1).reduce((a, b) => a + b, 0) / 50);
-    this.i0 = Math.max(0, this.n - 126); this.i1 = this.n - 1 + 3; this.hover = null; this.pat = null;
-    this.pointers = new Map(); this.drag = null;
+    this.hover = null; this.pat = null; this.pointers = new Map(); this.drag = null;
+    this.setFrame(frame, true);
     this.ro = new ResizeObserver(() => this.resize()); this.ro.observe(canvas);
     this.bindEvents(); this.resize();
+  }
+  /* "D" = daily bars with 50/150/200-day MAs; "W" = weekly bars with 10/30/40-week MAs. */
+  setFrame(f, quiet) {
+    const d = this.d, w = d.weekly;
+    if (f === "W" && !w) f = "D";
+    this.frame = f;
+    const s = f === "W"
+      ? {t: w.t, o: w.o, h: w.h, l: w.l, c: w.c, v: w.v, mas: [w.sma10, w.sma30, w.sma40], volN: 10, pad: 6, view: 78}
+      : {t: d.t, o: d.o, h: d.h, l: d.l, c: d.c, v: d.v, mas: [d.sma50, d.sma150, d.sma200], volN: 50, pad: 25, view: 126};
+    const N = s.volN;
+    s.volAvg = s.v.map((_, i) => i < N - 1 ? null : s.v.slice(i - N + 1, i + 1).reduce((a, b) => a + b, 0) / N);
+    this.s = s; this.n = s.t.length;
+    const idx = new Map(s.t.map((t, i) => [t, i]));
+    // Pattern points are daily dates. On weekly bars, place each one inside its week by weekday.
+    this.pos = f === "W" ? t => {
+      let lo = 0, hi = this.n - 1;
+      if (t > s.t[hi]) return null;
+      while (lo < hi) { const m = (lo + hi) >> 1; s.t[m] < t ? lo = m + 1 : hi = m; }
+      const dow = new Date(t + "T00:00:00Z").getUTCDay() || 5;
+      return lo - 0.5 + (Math.min(5, dow) - 0.5) / 5;
+    } : t => idx.get(t) ?? null;
+    this.hover = null;
+    this.i0 = Math.max(0, this.n - s.view); this.i1 = this.n - 1 + 3;
+    if (!quiet) this.draw();
   }
   destroy() { this.ro.disconnect(); }
   colors() {
@@ -246,11 +284,11 @@ class Chart {
   }
   setPattern(p) { this.pat = p; this.draw(); }
   fitPattern() {
-    const p = this.pat; let first = this.n - 126;
-    if (p) for (const path of p.paths) for (const [t] of path) { const i = this.idx.get(t); if (i != null) first = Math.min(first, i - 25); }
+    const p = this.pat; let first = this.n - this.s.view;
+    if (p) for (const path of p.paths) for (const [t] of path) { const i = this.pos(t); if (i != null) first = Math.min(first, Math.floor(i) - this.s.pad); }
     this.i0 = Math.max(0, first); this.i1 = this.n - 1 + 3; this.draw();
   }
-  setRange(r) { const span = r === "all" ? this.n : +r; this.i1 = this.n - 1 + 3; this.i0 = Math.max(0, this.i1 - span); this.draw(); }
+  setRange(r) { const span = r === "all" ? this.n : this.frame === "W" ? Math.round(+r / 252 * 52) : +r; this.i1 = this.n - 1 + 3; this.i0 = Math.max(0, this.i1 - span); this.draw(); }
   resize() {
     const r = this.cv.getBoundingClientRect(); if (!r.width) return;
     const dpr = window.devicePixelRatio || 1;
@@ -259,7 +297,8 @@ class Chart {
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0); this.draw();
   }
   geom() {
-    const axisW = 62, bottom = 22, top = 44, left = 6, gap = 8;
+    // leave room for the OHLC readout + MA key, which wrap onto extra lines on narrow screens
+    const axisW = 62, bottom = 22, top = Math.max(44, (this.legendH || 16) + 30), left = 6, gap = 8;
     const plotW = this.W - axisW - left, total = this.H - bottom - top;
     const priceH = Math.round(total * 0.76), volH = total - priceH - gap;
     const span = this.i1 - this.i0 + 1, bw = plotW / span;
@@ -269,7 +308,7 @@ class Chart {
   iAt(px, g) { return Math.round((px - g.left) / g.bw - 0.5 + this.i0); }
   draw() {
     if (!this.W) return;
-    const c = this.ctx, d = this.d, g = this.geom(), C = this.colors();
+    const c = this.ctx, d = this.s, g = this.geom(), C = this.colors();
     c.clearRect(0, 0, this.W, this.H);
     const a = Math.max(0, Math.floor(this.i0)), b = Math.min(this.n - 1, Math.ceil(this.i1));
     if (b < a) return;
@@ -316,12 +355,12 @@ class Chart {
       c.fillRect(this.x(i, g) - bw / 2, vy(d.v[i]), bw, g.volTop + g.volH - vy(d.v[i]));
     }
     c.globalAlpha = 1;
-    this.line(this.vol50, a, b, g, vy, C.text, 1);
+    this.line(d.volAvg, a, b, g, vy, C.text, 1);
 
     // moving averages
-    this.line(d.sma200, a, b, g, y, C.ma200, 1.3);
-    this.line(d.sma150, a, b, g, y, C.ma150, 1.3);
-    this.line(d.sma50, a, b, g, y, C.ma50, 1.3);
+    this.line(d.mas[2], a, b, g, y, C.ma200, 1.3);
+    this.line(d.mas[1], a, b, g, y, C.ma150, 1.3);
+    this.line(d.mas[0], a, b, g, y, C.ma50, 1.3);
 
     // candles
     for (let i = a; i <= b; i++) {
@@ -337,12 +376,14 @@ class Chart {
     if (p) {
       c.strokeStyle = C.pat; c.lineWidth = 2.2; c.lineJoin = "round";
       for (const path of p.paths) {
-        c.beginPath(); path.forEach(([t, v], j) => { const i = this.idx.get(t); if (i == null) return; j ? c.lineTo(this.x(i, g), y(v)) : c.moveTo(this.x(i, g), y(v)); }); c.stroke();
-        c.fillStyle = C.pat; for (const [t, v] of path) { const i = this.idx.get(t); if (i == null) continue; c.beginPath(); c.arc(this.x(i, g), y(v), 3, 0, 7); c.fill(); }
+        c.beginPath(); let started = false;
+        for (const [t, v] of path) { const i = this.pos(t); if (i == null) continue; started ? c.lineTo(this.x(i, g), y(v)) : c.moveTo(this.x(i, g), y(v)); started = true; }
+        c.stroke();
+        c.fillStyle = C.pat; for (const [t, v] of path) { const i = this.pos(t); if (i == null) continue; c.beginPath(); c.arc(this.x(i, g), y(v), 3, 0, 7); c.fill(); }
       }
       c.font = "600 11px -apple-system, Segoe UI, Roboto, sans-serif";
       for (const [t, v, txt, pos] of p.labels) {
-        const i = this.idx.get(t); if (i == null) continue;
+        const i = this.pos(t); if (i == null) continue;
         const xx = this.x(i, g), yy = y(v) + (pos === "above" ? -12 : 14), w = c.measureText(txt).width + 8;
         c.fillStyle = C.card; c.globalAlpha = 0.85; c.fillRect(xx - w / 2, yy - 8, w, 15); c.globalAlpha = 1;
         c.fillStyle = C.pat; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText(txt, xx, yy);
@@ -353,8 +394,10 @@ class Chart {
 
     // pivot / stop lines with axis tags
     if (p) {
-      this.hline(p.pivot, y, g, C.green, [6, 4], "Pivot " + fmt(p.pivot), C);
-      this.hline(p.stop, y, g, C.red, [2, 3], "Stop " + fmt(p.stop), C);
+      // keep the two price tags from overlapping when pivot and stop are close on screen
+      const gapPx = y(p.stop) - y(p.pivot), push = gapPx < 19 ? (19 - gapPx) / 2 : 0;
+      this.hline(p.pivot, y, g, C.green, [6, 4], "Pivot", C, -push, false);
+      this.hline(p.stop, y, g, C.red, [2, 3], "Stop", C, push, gapPx < 16);
     }
 
     // crosshair + legend
@@ -371,23 +414,29 @@ class Chart {
       c.setLineDash([]);
     }
     const i = hi_, chg = i > 0 ? (d.c[i] / d.c[i - 1] - 1) * 100 : 0;
-    this.legend.innerHTML = `<b>${esc(d.ticker)}</b><span class="k">${prettyDate(d.t[i])}</span>
+    this.legend.innerHTML = `<b>${esc(this.d.ticker)}</b><span class="k">${this.frame === "W" ? "Week to " : ""}${prettyDate(d.t[i])}</span>
       <span><span class="k">O</span> ${fmt(d.o[i])}</span><span><span class="k">H</span> ${fmt(d.h[i])}</span>
       <span><span class="k">L</span> ${fmt(d.l[i])}</span><span><span class="k">C</span> ${fmt(d.c[i])} <span class="${cls(chg)}">${sgn(chg, 2)}</span></span>
       <span><span class="k">Vol</span> ${vol(d.v[i])}</span>`;
+    const lh = this.legend.offsetHeight;
+    if (lh && lh !== this.legendH) {
+      this.legendH = lh;
+      const ma = this.legend.nextElementSibling; if (ma) ma.style.top = (lh + 10) + "px";
+      this.draw();
+    }
   }
   line(arr, a, b, g, y, col, w) {
     const c = this.ctx; c.strokeStyle = col; c.lineWidth = w; c.beginPath(); let on = false;
     for (let i = a; i <= b; i++) { const v = arr[i]; if (v == null) { on = false; continue; } const xx = this.x(i, g), yy = y(v); on ? c.lineTo(xx, yy) : c.moveTo(xx, yy); on = true; }
     c.stroke();
   }
-  hline(v, y, g, col, dash, text, C) {
+  hline(v, y, g, col, dash, text, C, tagShift = 0, labelBelow = false) {
     const c = this.ctx, yy = Math.round(y(v)) + 0.5;
     if (yy < g.top || yy > g.top + g.priceH) return;
     c.strokeStyle = col; c.lineWidth = 1.2; c.setLineDash(dash); c.beginPath(); c.moveTo(g.left, yy); c.lineTo(g.left + g.plotW, yy); c.stroke(); c.setLineDash([]);
-    this.tag(g.left + g.plotW, yy, fmt(v), "#fff", col);
-    c.font = "600 11px -apple-system, Segoe UI, Roboto, sans-serif"; c.fillStyle = col; c.textBaseline = "bottom";
-    c.fillText(text.split(" ")[0], g.left + 6, yy - 3); c.textBaseline = "middle";
+    this.tag(g.left + g.plotW, yy + tagShift, fmt(v), "#fff", col);
+    c.font = "600 11px -apple-system, Segoe UI, Roboto, sans-serif"; c.fillStyle = col; c.textBaseline = labelBelow ? "top" : "bottom";
+    c.fillText(text, g.left + 6, labelBelow ? yy + 3 : yy - 3); c.textBaseline = "middle";
   }
   tag(x, y, text, fg, bg) {
     const c = this.ctx; c.font = "11px -apple-system, Segoe UI, Roboto, sans-serif";
