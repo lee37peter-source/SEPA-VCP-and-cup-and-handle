@@ -33,10 +33,10 @@
   "score": 60.2,
   "rs": 90,
   "status": "open",
-  "last": 245.0,
-  "ret_pct": 17.09,
+  "last": 249.66,
+  "ret_pct": 19.32,
   "max_pct": 25.92,
-  "days": 30,
+  "days": 31,
   "exit_date": null
  },
  {
@@ -53,10 +53,10 @@
   "score": 51.2,
   "rs": 84,
   "status": "open",
-  "last": 272.97,
-  "ret_pct": 5.86,
-  "max_pct": 7.09,
-  "days": 30,
+  "last": 274.47,
+  "ret_pct": 6.44,
+  "max_pct": 7.41,
+  "days": 31,
   "exit_date": null
  },
  {
@@ -73,10 +73,10 @@
   "score": 33.0,
   "rs": 78,
   "status": "open",
-  "last": 191.91,
-  "ret_pct": -3.24,
+  "last": 189.69,
+  "ret_pct": -4.36,
   "max_pct": 5.06,
-  "days": 29,
+  "days": 30,
   "exit_date": null
  },
  {
@@ -113,10 +113,10 @@
   "score": 70.6,
   "rs": 82,
   "status": "open",
-  "last": 12.97,
-  "ret_pct": 11.04,
+  "last": 12.92,
+  "ret_pct": 10.62,
   "max_pct": 13.18,
-  "days": 27,
+  "days": 28,
   "exit_date": null
  },
  {
@@ -133,10 +133,10 @@
   "score": 65.5,
   "rs": 81,
   "status": "open",
-  "last": 176.1,
-  "ret_pct": 5.96,
+  "last": 175.44,
+  "ret_pct": 5.56,
   "max_pct": 9.39,
-  "days": 27,
+  "days": 28,
   "exit_date": null
  },
  {
@@ -153,10 +153,10 @@
   "score": 58.7,
   "rs": 82,
   "status": "open",
-  "last": 12.97,
-  "ret_pct": 9.18,
+  "last": 12.92,
+  "ret_pct": 8.75,
   "max_pct": 11.28,
-  "days": 27,
+  "days": 28,
   "exit_date": null
  },
  {
@@ -173,10 +173,10 @@
   "score": 56.0,
   "rs": 88,
   "status": "open",
-  "last": 195.53,
-  "ret_pct": -1.05,
+  "last": 197.81,
+  "ret_pct": 0.1,
   "max_pct": 5.22,
-  "days": 27,
+  "days": 28,
   "exit_date": null
  },
  {
@@ -193,10 +193,10 @@
   "score": 45.0,
   "rs": 83,
   "status": "open",
-  "last": 16.82,
-  "ret_pct": -4.76,
+  "last": 17.14,
+  "ret_pct": -2.94,
   "max_pct": 4.36,
-  "days": 27,
+  "days": 28,
   "exit_date": null
  },
  {
@@ -233,10 +233,10 @@
   "score": 34.4,
   "rs": 84,
   "status": "open",
-  "last": 35.43,
-  "ret_pct": 6.05,
+  "last": 35.8,
+  "ret_pct": 7.15,
   "max_pct": 14.61,
-  "days": 27,
+  "days": 28,
   "exit_date": null
  },
  {
@@ -273,10 +273,10 @@
   "score": 43.9,
   "rs": 89,
   "status": "open",
-  "last": 145.34,
-  "ret_pct": -5.7,
+  "last": 146.59,
+  "ret_pct": -4.89,
   "max_pct": 7.66,
-  "days": 26,
+  "days": 27,
   "exit_date": null
  },
  {
@@ -373,10 +373,10 @@
   "score": 49.1,
   "rs": 70,
   "status": "open",
-  "last": 184.44,
-  "ret_pct": 8.21,
+  "last": 187.14,
+  "ret_pct": 9.8,
   "max_pct": 15.04,
-  "days": 24,
+  "days": 25,
   "exit_date": null
  },
  {
@@ -396,7 +396,7 @@
   "last": 19.53,
   "ret_pct": 12.05,
   "max_pct": 16.18,
-  "days": 24,
+  "days": 25,
   "exit_date": null
  },
  {
@@ -433,10 +433,10 @@
   "score": 36.3,
   "rs": 73,
   "status": "open",
-  "last": 51.7,
-  "ret_pct": 7.57,
+  "last": 52.53,
+  "ret_pct": 9.3,
   "max_pct": 25.28,
-  "days": 24,
+  "days": 25,
   "exit_date": null
  },
  {
@@ -513,10 +513,10 @@
   "score": 46.5,
   "rs": 78,
   "status": "open",
-  "last": 634.55,
-  "ret_pct": -1.36,
+  "last": 631.4,
+  "ret_pct": -1.85,
   "max_pct": 7.88,
-  "days": 23,
+  "days": 24,
   "exit_date": null
  },
  {
@@ -553,10 +553,10 @@
   "score": 63.5,
   "rs": 89,
   "status": "open",
-  "last": 47.91,
-  "ret_pct": -1.9,
+  "last": 47.94,
+  "ret_pct": -1.84,
   "max_pct": 6.72,
-  "days": 22,
+  "days": 23,
   "exit_date": null
  },
  {
@@ -573,10 +573,10 @@
   "score": 46.7,
   "rs": 84,
   "status": "open",
-  "last": 39.79,
-  "ret_pct": -4.69,
+  "last": 39.76,
+  "ret_pct": -4.77,
   "max_pct": 7.52,
-  "days": 22,
+  "days": 23,
   "exit_date": null
  },
  {
@@ -593,10 +593,10 @@
   "score": 45.4,
   "rs": 86,
   "status": "open",
-  "last": 66.84,
-  "ret_pct": 11.83,
+  "last": 66.81,
+  "ret_pct": 11.78,
   "max_pct": 16.1,
-  "days": 22,
+  "days": 23,
   "exit_date": null
  },
  {
@@ -613,10 +613,10 @@
   "score": 41.8,
   "rs": 89,
   "status": "open",
-  "last": 30.35,
-  "ret_pct": 7.13,
+  "last": 30.64,
+  "ret_pct": 8.15,
   "max_pct": 19.1,
-  "days": 22,
+  "days": 23,
   "exit_date": null
  },
  {
@@ -653,10 +653,10 @@
   "score": 37.2,
   "rs": 91,
   "status": "open",
-  "last": 32.64,
-  "ret_pct": 36.28,
+  "last": 33.18,
+  "ret_pct": 38.54,
   "max_pct": 44.18,
-  "days": 22,
+  "days": 23,
   "exit_date": null
  },
  {
@@ -673,10 +673,10 @@
   "score": 65.3,
   "rs": 88,
   "status": "open",
-  "last": 33.18,
-  "ret_pct": 0.67,
+  "last": 33.16,
+  "ret_pct": 0.61,
   "max_pct": 6.31,
-  "days": 22,
+  "days": 23,
   "exit_date": null
  },
  {
@@ -713,10 +713,10 @@
   "score": 41.2,
   "rs": 80,
   "status": "open",
-  "last": 37.62,
-  "ret_pct": -0.5,
+  "last": 37.74,
+  "ret_pct": -0.19,
   "max_pct": 5.13,
-  "days": 21,
+  "days": 22,
   "exit_date": null
  },
  {
@@ -813,10 +813,10 @@
   "score": 48.2,
   "rs": 75,
   "status": "open",
-  "last": 127.56,
-  "ret_pct": -1.07,
+  "last": 127.72,
+  "ret_pct": -0.95,
   "max_pct": 4.15,
-  "days": 19,
+  "days": 20,
   "exit_date": null
  },
  {
@@ -873,10 +873,10 @@
   "score": 35.5,
   "rs": 84,
   "status": "open",
-  "last": 21.88,
-  "ret_pct": 9.67,
+  "last": 21.72,
+  "ret_pct": 8.87,
   "max_pct": 13.33,
-  "days": 19,
+  "days": 20,
   "exit_date": null
  },
  {
@@ -893,10 +893,10 @@
   "score": 51.7,
   "rs": 86,
   "status": "open",
-  "last": 65.04,
-  "ret_pct": -2.21,
+  "last": 65.26,
+  "ret_pct": -1.88,
   "max_pct": 9.26,
-  "days": 18,
+  "days": 19,
   "exit_date": null
  },
  {
@@ -913,10 +913,10 @@
   "score": 58.4,
   "rs": 86,
   "status": "open",
-  "last": 372.56,
-  "ret_pct": 3.42,
-  "max_pct": 4.12,
-  "days": 18,
+  "last": 376.11,
+  "ret_pct": 4.4,
+  "max_pct": 5.17,
+  "days": 19,
   "exit_date": null
  },
  {
@@ -933,10 +933,10 @@
   "score": 66.1,
   "rs": 77,
   "status": "open",
-  "last": 82.32,
-  "ret_pct": 6.04,
+  "last": 82.57,
+  "ret_pct": 6.36,
   "max_pct": 11.99,
-  "days": 17,
+  "days": 18,
   "exit_date": null
  },
  {
@@ -993,10 +993,10 @@
   "score": 51.9,
   "rs": 74,
   "status": "open",
-  "last": 186.04,
-  "ret_pct": 0.89,
-  "max_pct": 5.97,
-  "days": 17,
+  "last": 187.4,
+  "ret_pct": 1.63,
+  "max_pct": 5.88,
+  "days": 18,
   "exit_date": null
  },
  {
@@ -1013,10 +1013,10 @@
   "score": 51.6,
   "rs": 71,
   "status": "open",
-  "last": 144.78,
-  "ret_pct": 11.77,
+  "last": 145.31,
+  "ret_pct": 12.18,
   "max_pct": 22.6,
-  "days": 17,
+  "days": 18,
   "exit_date": null
  },
  {
@@ -1033,10 +1033,10 @@
   "score": 45.3,
   "rs": 75,
   "status": "open",
-  "last": 122.57,
-  "ret_pct": -0.83,
+  "last": 123.05,
+  "ret_pct": -0.44,
   "max_pct": 6.46,
-  "days": 17,
+  "days": 18,
   "exit_date": null
  },
  {
@@ -1053,10 +1053,10 @@
   "score": 44.4,
   "rs": 82,
   "status": "open",
-  "last": 62.73,
-  "ret_pct": -3.98,
+  "last": 62.93,
+  "ret_pct": -3.67,
   "max_pct": 3.51,
-  "days": 17,
+  "days": 18,
   "exit_date": null
  },
  {
@@ -1093,10 +1093,10 @@
   "score": 57.1,
   "rs": 86,
   "status": "open",
-  "last": 244.28,
-  "ret_pct": 1.27,
+  "last": 245.51,
+  "ret_pct": 1.78,
   "max_pct": 6.43,
-  "days": 16,
+  "days": 17,
   "exit_date": null
  },
  {
@@ -1113,10 +1113,10 @@
   "score": 50.5,
   "rs": 96,
   "status": "open",
-  "last": 63.99,
-  "ret_pct": 8.4,
-  "max_pct": 15.25,
-  "days": 16,
+  "last": 70.13,
+  "ret_pct": 18.8,
+  "max_pct": 20.68,
+  "days": 17,
   "exit_date": null
  },
  {
@@ -1213,10 +1213,10 @@
   "score": 73.5,
   "rs": 85,
   "status": "open",
-  "last": 103.01,
-  "ret_pct": -1.95,
+  "last": 103.28,
+  "ret_pct": -1.69,
   "max_pct": 4.55,
-  "days": 15,
+  "days": 16,
   "exit_date": null
  },
  {
@@ -1253,10 +1253,10 @@
   "score": 65.3,
   "rs": 80,
   "status": "open",
-  "last": 120.56,
-  "ret_pct": 2.49,
+  "last": 120.3,
+  "ret_pct": 2.27,
   "max_pct": 6.69,
-  "days": 15,
+  "days": 16,
   "exit_date": null
  },
  {
@@ -1273,10 +1273,10 @@
   "score": 45.4,
   "rs": 82,
   "status": "open",
-  "last": 109.11,
-  "ret_pct": 4.0,
+  "last": 110.55,
+  "ret_pct": 5.38,
   "max_pct": 7.3,
-  "days": 15,
+  "days": 16,
   "exit_date": null
  },
  {
@@ -1293,10 +1293,10 @@
   "score": 39.0,
   "rs": 76,
   "status": "open",
-  "last": 25.79,
-  "ret_pct": 20.57,
-  "max_pct": 21.51,
-  "days": 15,
+  "last": 25.55,
+  "ret_pct": 19.45,
+  "max_pct": 22.67,
+  "days": 16,
   "exit_date": null
  },
  {
@@ -1313,10 +1313,10 @@
   "score": 82.5,
   "rs": 92,
   "status": "open",
-  "last": 13.9,
-  "ret_pct": 0.36,
+  "last": 13.92,
+  "ret_pct": 0.51,
   "max_pct": 0.65,
-  "days": 14,
+  "days": 15,
   "exit_date": null
  },
  {
@@ -1373,10 +1373,10 @@
   "score": 37.0,
   "rs": 82,
   "status": "open",
-  "last": 313.95,
-  "ret_pct": 0.53,
+  "last": 317.25,
+  "ret_pct": 1.59,
   "max_pct": 3.68,
-  "days": 14,
+  "days": 15,
   "exit_date": null
  },
  {
@@ -1433,10 +1433,10 @@
   "score": 65.6,
   "rs": 81,
   "status": "open",
-  "last": 84.34,
-  "ret_pct": -1.95,
+  "last": 84.5,
+  "ret_pct": -1.77,
   "max_pct": 7.56,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1493,10 +1493,10 @@
   "score": 60.6,
   "rs": 72,
   "status": "open",
-  "last": 54.75,
-  "ret_pct": -0.16,
+  "last": 54.27,
+  "ret_pct": -1.04,
   "max_pct": 6.44,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1513,10 +1513,10 @@
   "score": 57.0,
   "rs": 76,
   "status": "open",
-  "last": 9.73,
-  "ret_pct": -2.89,
+  "last": 9.78,
+  "ret_pct": -2.4,
   "max_pct": 2.1,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1533,10 +1533,10 @@
   "score": 56.6,
   "rs": 88,
   "status": "open",
-  "last": 1048.42,
-  "ret_pct": 1.66,
+  "last": 1078.09,
+  "ret_pct": 4.54,
   "max_pct": 8.75,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1553,10 +1553,10 @@
   "score": 55.1,
   "rs": 81,
   "status": "open",
-  "last": 119.46,
-  "ret_pct": -5.49,
+  "last": 119.14,
+  "ret_pct": -5.74,
   "max_pct": 1.88,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1613,10 +1613,10 @@
   "score": 50.4,
   "rs": 82,
   "status": "open",
-  "last": 240.93,
-  "ret_pct": -0.63,
+  "last": 245.14,
+  "ret_pct": 1.11,
   "max_pct": 3.01,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1633,10 +1633,10 @@
   "score": 49.7,
   "rs": 62,
   "status": "open",
-  "last": 50.8,
-  "ret_pct": 2.67,
+  "last": 51.71,
+  "ret_pct": 4.51,
   "max_pct": 5.7,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1673,10 +1673,10 @@
   "score": 48.7,
   "rs": 84,
   "status": "open",
-  "last": 319.05,
-  "ret_pct": 5.19,
+  "last": 322.64,
+  "ret_pct": 6.37,
   "max_pct": 7.8,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1713,10 +1713,10 @@
   "score": 40.0,
   "rs": 74,
   "status": "open",
-  "last": 1144.52,
-  "ret_pct": -3.32,
+  "last": 1146.03,
+  "ret_pct": -3.19,
   "max_pct": 4.93,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1773,10 +1773,10 @@
   "score": 33.6,
   "rs": 79,
   "status": "open",
-  "last": 105.06,
-  "ret_pct": 9.21,
+  "last": 106.12,
+  "ret_pct": 10.31,
   "max_pct": 12.27,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1793,10 +1793,10 @@
   "score": 32.4,
   "rs": 85,
   "status": "open",
-  "last": 26.59,
-  "ret_pct": 1.64,
-  "max_pct": 3.56,
-  "days": 13,
+  "last": 26.98,
+  "ret_pct": 3.13,
+  "max_pct": 4.4,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1833,10 +1833,10 @@
   "score": 58.3,
   "rs": 81,
   "status": "open",
-  "last": 94.12,
-  "ret_pct": -2.13,
+  "last": 96.04,
+  "ret_pct": -0.14,
   "max_pct": 1.45,
-  "days": 13,
+  "days": 14,
   "exit_date": null
  },
  {
@@ -1973,10 +1973,10 @@
   "score": 66.4,
   "rs": 83,
   "status": "open",
-  "last": 15.93,
-  "ret_pct": 3.51,
+  "last": 16.09,
+  "ret_pct": 4.55,
   "max_pct": 9.94,
-  "days": 12,
+  "days": 13,
   "exit_date": null
  },
  {
@@ -2013,10 +2013,10 @@
   "score": 41.3,
   "rs": 83,
   "status": "open",
-  "last": 15.93,
-  "ret_pct": 3.37,
+  "last": 16.09,
+  "ret_pct": 4.41,
   "max_pct": 9.8,
-  "days": 12,
+  "days": 13,
   "exit_date": null
  },
  {
@@ -2053,10 +2053,10 @@
   "score": 37.4,
   "rs": 91,
   "status": "open",
-  "last": 136.39,
-  "ret_pct": 0.82,
-  "max_pct": 2.67,
-  "days": 12,
+  "last": 140.53,
+  "ret_pct": 3.88,
+  "max_pct": 4.23,
+  "days": 13,
   "exit_date": null
  },
  {
@@ -2073,10 +2073,10 @@
   "score": 59.8,
   "rs": 91,
   "status": "open",
-  "last": 24.33,
-  "ret_pct": 2.92,
+  "last": 23.88,
+  "ret_pct": 1.02,
   "max_pct": 7.45,
-  "days": 11,
+  "days": 12,
   "exit_date": null
  },
  {
@@ -2093,10 +2093,10 @@
   "score": 53.7,
   "rs": 80,
   "status": "open",
-  "last": 58.56,
-  "ret_pct": 2.29,
-  "max_pct": 4.01,
-  "days": 11,
+  "last": 59.75,
+  "ret_pct": 4.37,
+  "max_pct": 4.7,
+  "days": 12,
   "exit_date": null
  },
  {
@@ -2113,10 +2113,10 @@
   "score": 39.6,
   "rs": 93,
   "status": "open",
-  "last": 39.63,
-  "ret_pct": 2.75,
-  "max_pct": 9.52,
-  "days": 11,
+  "last": 42.34,
+  "ret_pct": 9.77,
+  "max_pct": 10.68,
+  "days": 12,
   "exit_date": null
  },
  {
@@ -2133,10 +2133,10 @@
   "score": 31.5,
   "rs": 80,
   "status": "open",
-  "last": 58.56,
-  "ret_pct": 1.49,
-  "max_pct": 3.2,
-  "days": 11,
+  "last": 59.75,
+  "ret_pct": 3.55,
+  "max_pct": 3.88,
+  "days": 12,
   "exit_date": null
  },
  {
@@ -2193,10 +2193,10 @@
   "score": 41.7,
   "rs": 87,
   "status": "open",
-  "last": 26.64,
-  "ret_pct": -1.91,
+  "last": 26.91,
+  "ret_pct": -0.92,
   "max_pct": 1.44,
-  "days": 9,
+  "days": 10,
   "exit_date": null
  },
  {
@@ -2213,10 +2213,10 @@
   "score": 36.4,
   "rs": 88,
   "status": "open",
-  "last": 38.55,
-  "ret_pct": 0.94,
+  "last": 39.2,
+  "ret_pct": 2.64,
   "max_pct": 3.43,
-  "days": 9,
+  "days": 10,
   "exit_date": null
  },
  {
@@ -2233,10 +2233,10 @@
   "score": 51.9,
   "rs": 64,
   "status": "open",
-  "last": 37.96,
-  "ret_pct": 2.13,
-  "max_pct": 8.8,
-  "days": 8,
+  "last": 39.2,
+  "ret_pct": 5.46,
+  "max_pct": 7.34,
+  "days": 9,
   "exit_date": null
  },
  {
@@ -2313,10 +2313,10 @@
   "score": 57.1,
   "rs": 73,
   "status": "open",
-  "last": 62.95,
-  "ret_pct": 0.69,
+  "last": 63.42,
+  "ret_pct": 1.44,
   "max_pct": 5.17,
-  "days": 5,
+  "days": 6,
   "exit_date": null
  },
  {
@@ -2333,10 +2333,10 @@
   "score": 46.5,
   "rs": 90,
   "status": "open",
-  "last": 221.54,
-  "ret_pct": 2.76,
-  "max_pct": 4.18,
-  "days": 3,
+  "last": 224.42,
+  "ret_pct": 4.1,
+  "max_pct": 6.92,
+  "days": 4,
   "exit_date": null
  },
  {
@@ -2353,10 +2353,10 @@
   "score": 62.6,
   "rs": 86,
   "status": "open",
-  "last": 94.56,
-  "ret_pct": -4.71,
+  "last": 94.28,
+  "ret_pct": -4.99,
   "max_pct": 0.49,
-  "days": 3,
+  "days": 4,
   "exit_date": null
  },
  {
@@ -2373,9 +2373,29 @@
   "score": 79.0,
   "rs": 96,
   "status": "open",
-  "last": 52.96,
-  "ret_pct": -0.02,
-  "max_pct": -0.01,
+  "last": 52.94,
+  "ret_pct": -0.06,
+  "max_pct": 0.0,
+  "days": 1,
+  "exit_date": null
+ },
+ {
+  "id": "2026-11-24-ALKS-cup",
+  "date": "2026-11-24",
+  "ticker": "ALKS",
+  "name": "Alkermes plc",
+  "pattern": "cup",
+  "pattern_name": "Cup with Handle",
+  "signal": "BREAKOUT",
+  "entry": 48.36,
+  "stop": 44.83,
+  "pivot": 48.3,
+  "score": 72.2,
+  "rs": 92,
+  "status": "open",
+  "last": 49.92,
+  "ret_pct": 3.23,
+  "max_pct": 3.6,
   "days": 0,
   "exit_date": null
  }
